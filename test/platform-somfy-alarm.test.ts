@@ -44,18 +44,18 @@ describe('SomfyAlarmAccessory', () => {
 
   it('should handle arming/disarming', async () => {
     const alarm = new SomfyAlarmAccessory(log, accessory, config, api, getAlarmState, setAlarmState);
-    // @ts-ignore
-    await alarm['handleSetOn'](true);
+    // @ts-expect-error: Accessing private method for test
+    await alarm.handleSetOn(true);
     expect(setAlarmState).toHaveBeenCalledWith(true);
-    // @ts-ignore
-    await alarm['handleSetOn'](false);
+    // @ts-expect-error: Accessing private method for test
+    await alarm.handleSetOn(false);
     expect(setAlarmState).toHaveBeenCalledWith(false);
   });
 
   it('should handle getting alarm state', async () => {
     const alarm = new SomfyAlarmAccessory(log, accessory, config, api, getAlarmState, setAlarmState);
-    // @ts-ignore
-    const state = await alarm['handleGetOn']();
+    // @ts-expect-error: Accessing private method for test
+    const state = await alarm.handleGetOn();
     expect(getAlarmState).toHaveBeenCalled();
     expect(state).toBe(false);
   });
