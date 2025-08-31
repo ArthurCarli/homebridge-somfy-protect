@@ -11,6 +11,26 @@
         "type": "string",
         "required": true,
         "default": "Example Dynamic Platform"
+      },
+      "clientId": {
+        "title": "Somfy Protect Client ID",
+        "type": "string",
+        "required": true
+      },
+      "clientSecret": {
+        "title": "Somfy Protect Client Secret",
+        "type": "string",
+        "required": true
+      },
+      "username": {
+        "title": "Somfy Protect Username (email)",
+        "type": "string",
+        "required": true
+      },
+      "password": {
+        "title": "Somfy Protect Password",
+        "type": "string",
+        "required": true
       }
     }
   }
