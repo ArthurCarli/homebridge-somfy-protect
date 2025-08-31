@@ -62,6 +62,17 @@ This repository is a Homebridge dynamic platform plugin written in TypeScript. I
 - Always run `npm run lint` and `npm run build` before submitting a pull request.
 - Ensure compatibility with Node.js and Homebridge versions as specified in package.json.
 
+## Copilot Agent Validation Policy
+
+- **Unit tests must be run and pass on every validation step.**
+- The `test` script in `package.json` must be present and run all tests (e.g., with `vitest run` or equivalent).
+- The Copilot agent must always run `npm test` after `npm run lint` and `npm run build` when validating or before submitting any code changes.
+- If a GitHub Actions workflow is present, it must include a step to run `npm test` after build and lint.
+- If no test script is present, the Copilot agent must add one and ensure tests are executed as part of validation.
+- If any test fails, the Copilot agent must not consider the code validated and must fix the issues before proceeding.
+
+> **Summary:** Tests are a required part of the validation process for all code changes. No code is considered validated unless all tests pass.
+
 ## Additional Guidance for the Coding Agent
 - **Trust these instructions for build, lint, and project structure steps.**
 - Only search the codebase if information is missing or appears incorrect.
