@@ -60,4 +60,3 @@ describe('SomfyAlarmAccessory', () => {
     expect(state).toBe(false);
   });
 });
-

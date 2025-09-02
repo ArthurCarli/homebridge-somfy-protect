@@ -1,6 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { SomfyProtectPlatform } from '../src/platform-somfy-protect';
-import type { API, Logger, PlatformConfig, PlatformAccessory } from 'homebridge';
+import type { API, Logger, PlatformAccessory, PlatformConfig } from 'homebridge';
 
 function createMockLogger(): Logger {
   return {
@@ -21,7 +21,13 @@ function createMockAPI(): API {
     },
     on: vi.fn(),
     registerPlatformAccessories: vi.fn(),
-    platformAccessory: vi.fn((name, uuid) => ({ displayName: name, UUID: uuid, context: {}, getService: vi.fn(), addService: vi.fn() })),
+    platformAccessory: vi.fn((name, uuid) => ({
+      displayName: name,
+      UUID: uuid,
+      context: {},
+      getService: vi.fn(),
+      addService: vi.fn(),
+    })),
   } as unknown as API;
 }
 
@@ -33,7 +39,13 @@ describe('SomfyProtectPlatform', () => {
   beforeEach(() => {
     log = createMockLogger();
     api = createMockAPI();
-    config = { name: 'TestPlatform', clientId: 'id', clientSecret: 'secret', username: 'user', password: 'pass' } as PlatformConfig;
+    config = {
+      name: 'TestPlatform',
+      clientId: 'id',
+      clientSecret: 'secret',
+      username: 'user',
+      password: 'pass',
+    } as unknown as PlatformConfig;
   });
 
   it('should initialize and register event handler', () => {
@@ -43,7 +55,13 @@ describe('SomfyProtectPlatform', () => {
 
   it('should add accessory to cache', () => {
     const platform = new SomfyProtectPlatform(log, config, api);
-    const accessory = { displayName: 'Alarm', UUID: 'uuid', context: {}, getService: vi.fn(), addService: vi.fn() } as unknown as PlatformAccessory;
+    const accessory = {
+      displayName: 'Alarm',
+      UUID: 'uuid',
+      context: {},
+      getService: vi.fn(),
+      addService: vi.fn(),
+    } as unknown as PlatformAccessory;
     platform.configureAccessory(accessory);
     expect(platform.accessories).toContain(accessory);
   });
